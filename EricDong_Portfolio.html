@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eric Dong — Data Coordinator & Analyst</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0a192f;
+      --navy-light: #112240;
+      --slate: #8892b0;
+      --light-slate: #a8b2d8;
+      --lightest-slate: #ccd6f6;
+      --white: #e6f1ff;
+      --green: #64ffda;
+      --green-tint: rgba(100,255,218,0.08);
+      --font: 'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--navy);
+      color: var(--slate);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(10,25,47,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(100,255,218,0.08);
+      padding: 0 48px;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--green);
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      color: var(--light-slate); text-decoration: none;
+      font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-links a span { color: var(--green); margin-right: 4px; font-size: 0.75rem; }
+
+    /* ── SECTIONS ── */
+    section { max-width: 960px; margin: 0 auto; padding: 100px 24px; }
+    #hero { max-width: 100%; padding: 0; }
+
+    /* ── HERO ── */
+    .hero-inner {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 0 min(8vw, 120px);
+    }
+    .hero-greeting {
+      color: var(--green); font-size: 1rem;
+      font-weight: 500; margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+    .hero-name {
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 700; color: var(--lightest-slate);
+      line-height: 1.1; margin-bottom: 12px;
+    }
+    .hero-title {
+      font-size: clamp(1.4rem, 3.5vw, 2.8rem);
+      font-weight: 600; color: var(--slate);
+      margin-bottom: 28px;
+    }
+    .hero-desc {
+      max-width: 520px; font-size: 1rem;
+      color: var(--slate); margin-bottom: 44px; line-height: 1.8;
+    }
+    .hero-links { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 4px;
+      font-size: 0.9rem; font-weight: 600;
+      text-decoration: none; transition: all 0.2s;
+      letter-spacing: 0.5px;
+    }
+    .btn-primary {
+      border: 1px solid var(--green);
+      color: var(--green); background: transparent;
+    }
+    .btn-primary:hover { background: var(--green-tint); transform: translateY(-2px); }
+    .btn-secondary {
+      border: 1px solid var(--slate);
+      color: var(--slate); background: transparent;
+    }
+    .btn-secondary:hover { border-color: var(--green); color: var(--green); transform: translateY(-2px); }
+
+    /* ── SECTION HEADERS ── */
+    .section-title {
+      display: flex; align-items: center; gap: 16px;
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--lightest-slate);
+      margin-bottom: 48px; white-space: nowrap;
+    }
+    .section-title span { color: var(--green); font-size: 1.1rem; margin-right: 4px; }
+    .section-title::after {
+      content: ''; display: block; height: 1px;
+      background: var(--navy-light);
+      width: 100%; max-width: 300px;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 60px; align-items: start; }
+    .about-text p { margin-bottom: 16px; font-size: 1rem; line-height: 1.8; }
+    .about-text a { color: var(--green); text-decoration: none; }
+    .about-text a:hover { text-decoration: underline; }
+    .skills-list {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 8px; list-style: none; margin-top: 20px;
+    }
+    .skills-list li {
+      font-size: 0.85rem; color: var(--light-slate);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .skills-list li::before { content: '▹'; color: var(--green); font-size: 0.75rem; }
+    .about-card {
+      background: var(--navy-light);
+      border: 1px solid rgba(100,255,218,0.1);
+      border-radius: 8px; padding: 28px;
+    }
+    .about-card h3 { color: var(--lightest-slate); font-size: 0.9rem; margin-bottom: 16px; letter-spacing: 1px; text-transform: uppercase; }
+    .cert-badge {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px; border-radius: 6px;
+      background: var(--green-tint);
+      border: 1px solid rgba(100,255,218,0.15);
+      margin-bottom: 12px;
+    }
+    .cert-badge i { color: var(--green); font-size: 1.2rem; }
+    .cert-badge p { font-size: 0.82rem; color: var(--light-slate); line-height: 1.4; }
+    .cert-badge p strong { color: var(--lightest-slate); display: block; margin-bottom: 2px; }
+
+    /* ── EXPERIENCE ── */
+    .exp-tabs { display: flex; gap: 0; margin-bottom: 0; }
+    .exp-layout { display: grid; grid-template-columns: 200px 1fr; gap: 0; }
+    .tab-list {
+      display: flex; flex-direction: column;
+      border-left: 2px solid var(--navy-light);
+      list-style: none;
+    }
+    .tab-btn {
+      background: none; border: none; cursor: pointer;
+      padding: 14px 20px; text-align: left;
+      font-size: 0.85rem; font-weight: 500;
+      color: var(--slate); font-family: var(--font);
+      border-left: 2px solid transparent; margin-left: -2px;
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .tab-btn:hover { background: var(--green-tint); color: var(--green); }
+    .tab-btn.active { border-left-color: var(--green); color: var(--green); background: var(--green-tint); }
+    .tab-panel { display: none; padding: 0 32px; }
+    .tab-panel.active { display: block; }
+    .exp-role { font-size: 1.15rem; font-weight: 600; color: var(--lightest-slate); margin-bottom: 4px; }
+    .exp-company { color: var(--green); font-weight: 500; }
+    .exp-meta { font-size: 0.82rem; color: var(--slate); margin-bottom: 20px; letter-spacing: 0.5px; }
+    .exp-bullets { list-style: none; }
+    .exp-bullets li {
+      position: relative; padding-left: 20px;
+      margin-bottom: 10px; font-size: 0.95rem; line-height: 1.7;
+    }
+    .exp-bullets li::before {
+      content: '▹'; position: absolute; left: 0;
+      color: var(--green); font-size: 0.75rem; top: 4px;
+    }
+    .exp-bullets strong { color: var(--lightest-slate); }
+
+    /* ── PROJECTS ── */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+    .project-card {
+      background: var(--navy-light);
+      border: 1px solid rgba(100,255,218,0.08);
+      border-radius: 8px; padding: 32px;
+      display: flex; flex-direction: column;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(100,255,218,0.3);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+    .project-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+    .project-icon i { font-size: 2rem; color: var(--green); }
+    .project-links { display: flex; gap: 12px; }
+    .project-links a { color: var(--slate); font-size: 1rem; transition: color 0.2s; }
+    .project-links a:hover { color: var(--green); }
+    .project-title { font-size: 1.05rem; font-weight: 700; color: var(--lightest-slate); margin-bottom: 10px; }
+    .project-desc { font-size: 0.88rem; color: var(--slate); line-height: 1.7; flex: 1; margin-bottom: 20px; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      font-size: 0.75rem; color: var(--green);
+      background: var(--green-tint); padding: 4px 10px;
+      border-radius: 3px; font-weight: 500;
+    }
+
+    /* ── SKILLS SECTION ── */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+    .skill-card {
+      background: var(--navy-light);
+      border: 1px solid rgba(100,255,218,0.08);
+      border-radius: 8px; padding: 24px;
+      transition: border-color 0.2s;
+    }
+    .skill-card:hover { border-color: rgba(100,255,218,0.25); }
+    .skill-card h3 {
+      color: var(--green); font-size: 0.78rem;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      margin-bottom: 16px; font-weight: 600;
+    }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pill {
+      font-size: 0.8rem; color: var(--light-slate);
+      background: rgba(100,255,218,0.04);
+      border: 1px solid rgba(100,255,218,0.12);
+      padding: 5px 12px; border-radius: 20px;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-card {
+      background: var(--navy-light);
+      border: 1px solid rgba(100,255,218,0.08);
+      border-radius: 8px; padding: 32px;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .edu-school { font-size: 1.1rem; font-weight: 700; color: var(--lightest-slate); margin-bottom: 6px; }
+    .edu-degree { color: var(--green); font-size: 0.95rem; font-weight: 500; margin-bottom: 6px; }
+    .edu-detail { font-size: 0.85rem; color: var(--slate); }
+    .edu-right { text-align: right; }
+    .edu-date { font-size: 0.85rem; color: var(--slate); margin-bottom: 4px; }
+    .edu-location { font-size: 0.85rem; color: var(--slate); }
+
+    /* ── CONTACT ── */
+    #contact { text-align: center; }
+    #contact .section-title { justify-content: center; }
+    #contact .section-title::after { display: none; }
+    .contact-desc { max-width: 500px; margin: 0 auto 40px; font-size: 1rem; line-height: 1.8; }
+    .contact-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+    .contact-link {
+      display: flex; align-items: center; gap: 10px;
+      color: var(--slate); text-decoration: none;
+      font-size: 0.9rem; padding: 10px 16px;
+      border: 1px solid rgba(100,255,218,0.1); border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .contact-link:hover { color: var(--green); border-color: var(--green); background: var(--green-tint); }
+    .contact-link i { font-size: 1rem; color: var(--green); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 24px;
+      font-size: 0.8rem; color: var(--slate);
+      border-top: 1px solid rgba(100,255,218,0.05);
+    }
+    footer a { color: var(--green); text-decoration: none; }
+
+    /* ── SIDE SOCIALS ── */
+    .side-element {
+      position: fixed; bottom: 0;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+    }
+    .side-element::after {
+      content: ''; display: block;
+      width: 1px; height: 80px; background: var(--slate);
+    }
+    .side-left { left: 40px; }
+    .side-right { right: 40px; }
+    .side-left a { color: var(--slate); font-size: 1.1rem; transition: all 0.2s; text-decoration: none; }
+    .side-left a:hover { color: var(--green); transform: translateY(-3px); }
+    .side-right a {
+      writing-mode: vertical-rl; color: var(--slate);
+      font-size: 0.78rem; letter-spacing: 2px;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .side-right a:hover { color: var(--green); transform: translateY(-3px); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero-inner { padding: 0 24px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .exp-layout { grid-template-columns: 1fr; }
+      .tab-list { flex-direction: row; border-left: none; border-bottom: 2px solid var(--navy-light); overflow-x: auto; }
+      .tab-btn { border-left: none; border-bottom: 2px solid transparent; margin-left: 0; margin-bottom: -2px; }
+      .tab-btn.active { border-left-color: transparent; border-bottom-color: var(--green); }
+      .tab-panel { padding: 20px 0 0; }
+      .edu-card { flex-direction: column; }
+      .edu-right { text-align: left; }
+      .side-element { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">ED</a>
+  <ul class="nav-links">
+    <li><a href="#about"><span>01.</span>About</a></li>
+    <li><a href="#experience"><span>02.</span>Experience</a></li>
+    <li><a href="#projects"><span>03.</span>Projects</a></li>
+    <li><a href="#skills"><span>04.</span>Skills</a></li>
+    <li><a href="#contact"><span>05.</span>Contact</a></li>
+  </ul>
+</nav>
+
+<!-- SIDE ELEMENTS -->
+<div class="side-element side-left">
+  <a href="https://github.com/erdong023-jpg" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+  <a href="https://linkedin.com/in/ericdong023" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+  <a href="mailto:erdong023@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+</div>
+<div class="side-element side-right">
+  <a href="mailto:erdong023@gmail.com">erdong023@gmail.com</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <p class="hero-greeting">Hi, my name is</p>
+    <h1 class="hero-name">Eric Dong.</h1>
+    <h2 class="hero-title">I turn data into decisions.</h2>
+    <p class="hero-desc">
+      I'm a data professional based in San Jose, CA specializing in data analysis,
+      process automation, and operational analytics. Currently at
+      <a href="https://www.essilorluxottica.com" target="_blank" style="color:var(--green);text-decoration:none;">EssilorLuxottica</a>,
+      where I build tools that make complex workflows simple.
+    </p>
+    <div class="hero-links">
+      <a href="#projects" class="btn btn-primary"><i class="fas fa-code-branch"></i> View My Work</a>
+      <a href="https://github.com/erdong023-jpg" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> GitHub</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2 class="section-title"><span>01.</span> About Me</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm a recent graduate from <strong style="color:var(--lightest-slate)">UC Davis</strong> with dual degrees in Applied Mathematics and Statistics – Data Science. My work sits at the intersection of data analysis, process automation, and operational systems.
+      </p>
+      <p>
+        At EssilorLuxottica, I handle high-volume order operations while building internal tools to automate repetitive workflows — like an Excel VBA macro that cut a multi-hour pricing process down to under 10 minutes. I believe the best analysis is the kind that directly simplifies someone's day.
+      </p>
+      <p>Here are some technologies I've been working with:</p>
+      <ul class="skills-list">
+        <li>Python (Pandas, Scikit-learn)</li>
+        <li>SQL / Microsoft Access</li>
+        <li>Excel VBA / Macros</li>
+        <li>Git / GitHub</li>
+        <li>R / RStudio</li>
+        <li>Jupyter Notebook</li>
+      </ul>
+    </div>
+    <div>
+      <div class="about-card">
+        <h3>Certifications</h3>
+        <div class="cert-badge">
+          <i class="fab fa-google"></i>
+          <p>
+            <strong>Google Data Analytics</strong>
+            Professional Certificate · Coursera
+          </p>
+        </div>
+        <h3 style="margin-top:20px;">Education</h3>
+        <div class="cert-badge">
+          <i class="fas fa-graduation-cap"></i>
+          <p>
+            <strong>UC Davis · 2021–2025</strong>
+            B.S. Applied Mathematics<br/>B.S. Statistics – Data Science
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <h2 class="section-title"><span>02.</span> Experience</h2>
+  <div class="exp-layout">
+    <ul class="tab-list">
+      <li><button class="tab-btn active" onclick="switchTab(0)">EssilorLuxottica</button></li>
+      <li><button class="tab-btn" onclick="switchTab(1)">UCPRC (Analyst)</button></li>
+      <li><button class="tab-btn" onclick="switchTab(2)">UCPRC (Data Entry)</button></li>
+    </ul>
+    <div>
+      <!-- Tab 0 -->
+      <div class="tab-panel active" id="tab-0">
+        <p class="exp-role">Data Coordinator <span class="exp-company">@ EssilorLuxottica</span></p>
+        <p class="exp-meta">March 2026 – Present &nbsp;·&nbsp; San Jose, CA</p>
+        <ul class="exp-bullets">
+          <li>Process <strong>80–120 orders and tickets daily</strong>, entering courier and doctor system orders into the LMS and managing C4C support tickets with consistent accuracy</li>
+          <li>Coordinate with lab and customer service teams on job status, product availability, and order feasibility — resolving stalls and re-ordering canceled or outsourced jobs</li>
+          <li>Built an <strong>Excel VBA macro tool</strong> with SQL-based Microsoft Access joins to automate lens pricing uploads to the LMS, <strong>reducing a multi-hour manual workflow to under 10 minutes</strong></li>
+        </ul>
+      </div>
+      <!-- Tab 1 -->
+      <div class="tab-panel" id="tab-1">
+        <p class="exp-role">Project Support Analyst <span class="exp-company">@ UC Pavement Research Center</span></p>
+        <p class="exp-meta">July 2023 – July 2025 &nbsp;·&nbsp; Davis, CA</p>
+        <ul class="exp-bullets">
+          <li>Aggregated and analyzed construction and lab data across <strong>8+ high-profile HMA pilot projects</strong>; utilized SQL to extract data from the UCPRC tracking system</li>
+          <li>Automated data cleansing and aggregation via <strong>Python scripts</strong>, streamlining lab and field testing schedules and <strong>reducing project delays by 25%</strong></li>
+          <li>Designed and optimized asphalt mix models (40% RAP vs. 25% industry standard), presenting data insights to stakeholders for process improvement</li>
+        </ul>
+      </div>
+      <!-- Tab 2 -->
+      <div class="tab-panel" id="tab-2">
+        <p class="exp-role">Data Entry Specialist <span class="exp-company">@ UC Pavement Research Center</span></p>
+        <p class="exp-meta">March 2023 – June 2023 &nbsp;·&nbsp; Davis, CA</p>
+        <ul class="exp-bullets">
+          <li>Collected and maintained <strong>1,200+ pavement data readings</strong> integrated into a database of 500+ test records for Caltrans analysis teams</li>
+          <li><strong>Reduced equipment downtime by 20%</strong> through preventive maintenance planning, process governance, and engineer coordination</li>
+          <li>Interpreted technical requirements, translated them into actionable tasks, and ensured alignment with operational and research objectives</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <h2 class="section-title"><span>03.</span> Projects</h2>
+  <div class="projects-grid">
+
+    <a class="project-card" href="https://github.com/erdong023-jpg/P1143-Kodak-LMS-Tool" target="_blank">
+      <div class="project-top">
+        <div class="project-icon"><i class="fas fa-file-excel"></i></div>
+        <div class="project-links">
+          <a href="https://github.com/erdong023-jpg/P1143-Kodak-LMS-Tool" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <p class="project-title">P1143 LMS Price Upload Automation</p>
+      <p class="project-desc">
+        Excel VBA macro tool that automates extraction and formatting of 35,000-row lens pricing datasets into LMS-ready upload files. Uses relational database queries in Access to map product codes across a 70,000+ row reference table — reducing a 45–90 min manual process to a single click.
+      </p>
+      <div class="project-tags">
+        <span class="tag">Excel VBA</span>
+        <span class="tag">SQL</span>
+        <span class="tag">Microsoft Access</span>
+        <span class="tag">Data Automation</span>
+      </div>
+    </a>
+
+    <div class="project-card" style="cursor:default;">
+      <div class="project-top">
+        <div class="project-icon"><i class="fas fa-chart-line"></i></div>
+      </div>
+      <p class="project-title">Customer Churn Prediction System</p>
+      <p class="project-desc">
+        Machine learning pipeline in Python using Logistic Regression and Gradient Boosting to predict customer churn. Achieved ROC AUC 0.84 on validation data. Includes feature engineering, cross-validation, confusion matrix evaluation, and churn risk segmentation.
+      </p>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Scikit-learn</span>
+        <span class="tag">ML Pipeline</span>
+        <span class="tag">Pandas</span>
+      </div>
+    </div>
+
+    <div class="project-card" style="cursor:default;">
+      <div class="project-top">
+        <div class="project-icon"><i class="fas fa-brain"></i></div>
+      </div>
+      <p class="project-title">Real-Time Stock Price Prediction</p>
+      <p class="project-desc">
+        Time-series forecasting system using LSTM neural networks in TensorFlow/Keras. Achieved MAE &lt; 4 through structured sequential data splits to prevent leakage. Includes automated data ingestion and retraining pipelines for continuous model updates.
+      </p>
+      <div class="project-tags">
+        <span class="tag">TensorFlow</span>
+        <span class="tag">LSTM</span>
+        <span class="tag">Time Series</span>
+        <span class="tag">Python</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <h2 class="section-title"><span>04.</span> Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <h3>Technical</h3>
+      <div class="skill-pills">
+        <span class="pill">Python</span>
+        <span class="pill">SQL</span>
+        <span class="pill">Excel VBA</span>
+        <span class="pill">Pandas</span>
+        <span class="pill">Scikit-learn</span>
+        <span class="pill">VLOOKUP / XLOOKUP</span>
+        <span class="pill">Pivot Tables</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>Tools</h3>
+      <div class="skill-pills">
+        <span class="pill">Jupyter</span>
+        <span class="pill">RStudio</span>
+        <span class="pill">Git / GitHub</span>
+        <span class="pill">Microsoft Access</span>
+        <span class="pill">Kaggle</span>
+        <span class="pill">SAP C4C</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>Professional</h3>
+      <div class="skill-pills">
+        <span class="pill">Data Analysis</span>
+        <span class="pill">Data Visualization</span>
+        <span class="pill">Process Automation</span>
+        <span class="pill">Reporting</span>
+        <span class="pill">Stakeholder Communication</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>Certifications</h3>
+      <div class="skill-pills">
+        <span class="pill">Google Data Analytics</span>
+        <span class="pill">Coursera</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2 class="section-title"><span>05.</span> Get In Touch</h2>
+  <p class="contact-desc">
+    I'm currently open to new opportunities. Whether you have a question, a role in mind, or just want to connect — my inbox is always open.
+  </p>
+  <a href="mailto:erdong023@gmail.com" class="btn btn-primary" style="margin: 0 auto 40px; display:inline-flex;">
+    <i class="fas fa-paper-plane"></i> Say Hello
+  </a>
+  <br/><br/>
+  <div class="contact-links">
+    <a href="mailto:erdong023@gmail.com" class="contact-link"><i class="fas fa-envelope"></i> erdong023@gmail.com</a>
+    <a href="tel:6697860918" class="contact-link"><i class="fas fa-phone"></i> 669-786-0918</a>
+    <a href="https://linkedin.com/in/ericdong023" target="_blank" class="contact-link"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+    <a href="https://github.com/erdong023-jpg" target="_blank" class="contact-link"><i class="fab fa-github"></i> GitHub</a>
+  </div>
+</section>
+
+<footer>
+  <p>Designed &amp; Built by <a href="https://github.com/erdong023-jpg" target="_blank">Eric Dong</a></p>
+</footer>
+
+<script>
+  function switchTab(index) {
+    document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+      btn.classList.toggle('active', i === index);
+    });
+    document.querySelectorAll('.tab-panel').forEach((panel, i) => {
+      panel.classList.toggle('active', i === index);
+    });
+  }
+
+  // Fade in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('section:not(#hero), .project-card, .skill-card, .edu-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
